@@ -1,30 +1,45 @@
-const {connectToMongoDB, client} = require('../config/db');
+const {client} = require('../config/db');
+const databaseName = "Doctor-Flow"; // Your database name
+const collectionName = "PatientRecords"; // Your collection name
 
-async function testAddToCollection() {
+async function addPatientToDatabase(patientData) {
     try {
         // Connect to MongoDB
-        const databaseName = "Doctor-Flow"; // Your database name
-        const collectionName = "PatientRecords"; // Your collection name
-
-        // Sample document to insert
-        const document = {
-            name: "John Doe",
-            age: 30,
-            email: "john@example.com"
-        };
-
         const database = client.db(databaseName);
         const collection = database.collection(collectionName);
 
-        // Insert the document into the collection
-        const result = await collection.insertOne(document);
-        console.log("Document inserted successfully:", result.insertedId);
-
-        return result.insertedId; // Return the ID of the inserted document
+        // Insert the patient data into the collection
+        const result = await collection.insertOne(patientData);
+        return result.insertedId;
     } catch (error) {
-        console.error("Error adding record to collection:", error);
+        console.error("Error adding patient to database:", error);
         throw error;
-    } 
+    }
 }
 
-module.exports = { testAddToCollection };
+async function deletePatientById(patientId) {
+    try {
+        const database = client.db(databaseName);
+        const collection = database.collection(collectionName);
+
+        // Delete the patient with the given ID from the collection
+        const result = await collection.deleteOne({ _id: patientId });
+
+        // Check if a patient was deleted
+        if (result.deletedCount === 1) {
+            // Return the deleted patient if deletion was successful
+            return { _id: patientId };
+        } else {
+            // If no patient was deleted (maybe the patient with the given ID doesn't exist),
+            // return null or throw an error depending on your application's requirements
+            return null;
+        }
+    } catch (error) {
+        // Handle any errors that occur during the deletion process
+        console.error("Error deleting patient:", error);
+        throw error;
+    }
+}
+
+
+module.exports = { addPatientToDatabase, deletePatientById };
