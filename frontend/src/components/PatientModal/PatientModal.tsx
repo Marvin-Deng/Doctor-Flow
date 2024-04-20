@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import Modal from "react-modal";
-import Patient from "../types/Patient";
+import Patient from "../../types/Patient";
 import MedTable from "./MedTable";
-import EmailModal from "./EmailModal";
-import PatientTable from "./PatientDetails/PatientTable";
+import EmailModal from "../Email/EmailModal";
+import PatientTable from "./PatientTable";
 
 interface PatientModalProps {
   isOpen: boolean;

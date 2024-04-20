@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import InputForm from "./InputForm";
+import InputForm from "../units/InputForm";
 import Modal from "react-modal";
-import Patient from "../types/Patient";
+import Patient from "../../types/Patient";
 
 interface NewPatientModalProps {
   isOpen: boolean;

@@ -1,6 +1,6 @@
 import React from "react";
 import PatientCard from "./PatientCard";
-import Patient from "../types/Patient";
+import Patient from "../../types/Patient";
 
 const PatientsList: React.FC = () => {
   const dummyPatients: Patient[] = [

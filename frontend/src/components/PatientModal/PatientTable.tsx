@@ -1,6 +1,6 @@
 import React from "react";
 import Patient from "../../types/Patient";
-import { TableCell, TableHeader } from "./DetailTableUnits";
+import { TableCell, TableHeader } from "./PatientDetails/DetailTableUnits";
 
 interface PatientTableProps {
   patient: Patient;
