@@ -61,7 +61,7 @@ const PatientsList: React.FC = () => {
       ],
     },
     {
-      id: 1,
+      id: 3,
       name: "John Doe",
       sex: "Male",
       age: 35,
@@ -71,7 +71,7 @@ const PatientsList: React.FC = () => {
       allergies: ["Peanuts"],
       medications: [
         {
-          id: 1,
+          id: 3,
           rx: "Medication A",
           dose: 10.0,
           unit: "mg",
@@ -81,7 +81,7 @@ const PatientsList: React.FC = () => {
       ],
     },
     {
-      id: 1,
+      id: 4,
       name: "John Doe",
       sex: "Male",
       age: 35,
@@ -91,7 +91,7 @@ const PatientsList: React.FC = () => {
       allergies: ["Peanuts"],
       medications: [
         {
-          id: 1,
+          id: 4,
           rx: "Medication A",
           dose: 10.0,
           unit: "mg",
@@ -103,7 +103,7 @@ const PatientsList: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 gap-4 mt-5">
       {dummyPatients.map((patient) => (
         <PatientCard key={patient.id} patient={patient} />
       ))}

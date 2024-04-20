@@ -22,9 +22,9 @@ const PatientCard: React.FC<PatientCardProps> = ({ patient }) => {
     <div>
       <div
         onClick={handleOpenModal}
-        className="bg-white shadow-md rounded-xl p-4 flex items-center space-x-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
+        className="bg-white shadow-md rounded-xl p-4 flex flex-row items-center space-x-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
       >
-        <div className="flex-grow">
+        <div className="flex-grow flex flex-row flex-wrap items-center justify-start space-x-4">
           <h2 className="text-lg font-semibold">{patient.name}</h2>
           <p>ID: {patient.id}</p>
           <p>Sex: {patient.sex}</p>
