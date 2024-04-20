@@ -1,7 +1,7 @@
-"use client";
 import React, { useState } from "react";
 import InputForm from "./InputForm";
 import Modal from "react-modal";
+import Patient from "../types/Patient";
 
 interface NewPatientModalProps {
   isOpen: boolean;
@@ -12,33 +12,30 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
   isOpen,
   handleClose,
 }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [medicines, setMedicines] = useState([{ name: "", dosage: "" }]);
+  const [patient, setPatient] = useState<Patient>({
+    id: 0,
+    name: "",
+    sex: "",
+    age: 0,
+    dob: new Date(),
+    email: "",
+    insurance: "",
+    allergies: [],
+    medications: [],
+  });
 
-  const handleAddMedicine = () => {
-    setMedicines((prevMedicines) => [
-      ...prevMedicines,
-      { name: "", dosage: "" },
-    ]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type } = e.target;
+    if (type === "date") {
+      setPatient((prev) => ({ ...prev, [name]: new Date(value) }));
+    } else {
+      setPatient((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
-  const handleRemoveMedicine = (index: number) => {
-    setMedicines((prevMedicines) =>
-      prevMedicines.filter((medicine, i) => i !== index)
-    );
-  };
-
-  const handleMedicineChange = (
-    index: number,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { name, value } = event.target;
-    setMedicines((prevMedicines) =>
-      prevMedicines.map((medicine, i) =>
-        i === index ? { ...medicine, [name]: value } : medicine
-      )
-    );
+  const handleSubmit = () => {
+    console.log("Submitting Patient Data:", patient);
+    handleClose();
   };
 
   return (
@@ -46,11 +43,11 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
       isOpen={isOpen}
       onRequestClose={handleClose}
       contentLabel="Patient Details"
-      className="modal fixed inset-0 flex items-center justify-center z-50"
+      className="modal fixed inset-0 flex items-center justify-center z-50 p-10"
       overlayClassName="fixed inset-0 bg-gray-700 bg-opacity-60 flex items-center justify-center"
       ariaHideApp={false}
     >
-      <div className="relative p-4 w-full max-w-5xl max-h-full bg-white rounded-lg shadow-xl">
+      <div className="relative p-4 w-full max-w-7xl max-h-[calc(100vh-5rem)] overflow-y-auto bg-white rounded-lg shadow-xl flex flex-col justify-between">
         <button
           onClick={handleClose}
           className="absolute top-4 right-8 w-8 h-8 flex items-center justify-center text-2xl rounded text-gray-600 hover:bg-gray-300"
@@ -59,40 +56,64 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
         >
           &times;
         </button>
-        <InputForm
-          label="Name"
-          type="text"
-          placeholder="Enter your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <InputForm
-          label="Email"
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {medicines.map((medicine, index) => (
-          <div key={index}>
-            <InputForm
-              label="Medicine Name"
-              type="text"
-              placeholder="Enter medicine name"
-              value={medicine.name}
-              onChange={(e) => handleMedicineChange(index, e)}
-            />
-            <InputForm
-              label="Dosage"
-              type="text"
-              placeholder="Enter dosage"
-              value={medicine.dosage}
-              onChange={(e) => handleMedicineChange(index, e)}
-            />
-            <button onClick={() => handleRemoveMedicine(index)}>Remove</button>
-          </div>
-        ))}
-        <button onClick={handleAddMedicine}>Add Medicine</button>
+        <div>
+          <InputForm
+            label="Name"
+            type="text"
+            name="name"
+            placeholder="Enter name"
+            value={patient.name}
+            onChange={handleChange}
+          />
+          <InputForm
+            label="Sex"
+            type="text"
+            name="sex"
+            placeholder="Enter sex"
+            value={patient.sex}
+            onChange={handleChange}
+          />
+          <InputForm
+            label="Age"
+            type="text"
+            name="age"
+            placeholder="Enter age"
+            value={patient.age.toString()}
+            onChange={handleChange}
+          />
+          <InputForm
+            label="Date of Birth"
+            type="date"
+            name="dob"
+            value={patient.dob.toISOString().substring(0, 10)}
+            onChange={handleChange}
+          />
+
+          <InputForm
+            label="Email"
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={patient.email}
+            onChange={handleChange}
+          />
+          <InputForm
+            label="Insurance"
+            type="text"
+            name="insurance"
+            placeholder="Enter insurance"
+            value={patient.insurance}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex justify-end">
+          <button
+            onClick={handleSubmit}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </Modal>
   );

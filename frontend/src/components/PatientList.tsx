@@ -103,7 +103,7 @@ const PatientsList: React.FC = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-4 mt-5">
+    <div className="mt-5 grid grid-cols-1 gap-4">
       {dummyPatients.map((patient) => (
         <PatientCard key={patient.id} patient={patient} />
       ))}
