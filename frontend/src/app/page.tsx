@@ -1,12 +1,7 @@
-import Image from "next/image";
-import MedTable from "../components/MedTable"
-import NewPatientForm from "../components/NewPatientForm"
+import LandingPage from "./home/page"
 
 export default function Home() {
   return (
-    <main>
-      <MedTable />
-      <NewPatientForm />
-    </main>
+    <LandingPage />
   );
 }
