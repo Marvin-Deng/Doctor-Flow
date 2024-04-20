@@ -5,6 +5,7 @@ interface InputFormProps {
   placeholder?: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  width?: string;
 }
 
 const InputForm: React.FC<InputFormProps> = ({
@@ -14,6 +15,7 @@ const InputForm: React.FC<InputFormProps> = ({
   placeholder = "",
   value,
   onChange,
+  width = "full"
 }) => (
   <div className="mb-4">
     {label && (
@@ -25,13 +27,14 @@ const InputForm: React.FC<InputFormProps> = ({
       </label>
     )}
     <input
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      className={`text-sm shadow appearance-none border rounded ${width === "full" ? "w-full" : ""} py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
       id={name}
       name={name}
       type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      style={{ width: width !== "full" ? width : undefined }}
     />
   </div>
 );

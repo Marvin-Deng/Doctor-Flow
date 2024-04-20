@@ -47,7 +47,10 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
       overlayClassName="fixed inset-0 bg-gray-700 bg-opacity-60 flex items-center justify-center"
       ariaHideApp={false}
     >
-      <div className="relative p-4 w-full max-w-7xl max-h-[calc(100vh-5rem)] overflow-y-auto bg-white rounded-lg shadow-xl flex flex-col justify-between">
+      <div className="relative p-10 w-full max-w-3xl max-h-[calc(100vh-5rem)] overflow-y-auto bg-white rounded-lg shadow-xl flex flex-col justify-between">
+        <h2 className="mx-8 text-xl font-bold text-center mb-4">
+          Create Patient
+        </h2>
         <button
           onClick={handleClose}
           className="absolute top-4 right-8 w-8 h-8 flex items-center justify-center text-2xl rounded text-gray-600 hover:bg-gray-300"
@@ -98,6 +101,14 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
             onChange={handleChange}
           />
           <InputForm
+            label="Allergies (optional)"
+            type="text"
+            name="allergies"
+            placeholder="Enter allergies"
+            value={patient.insurance}
+            onChange={handleChange}
+          />
+          <InputForm
             label="Insurance"
             type="text"
             name="insurance"
@@ -109,7 +120,7 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
         <div className="flex justify-end">
           <button
             onClick={handleSubmit}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-3 py-2 px-4 rounded"
           >
             Submit
           </button>
