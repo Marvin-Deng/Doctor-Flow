@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import Modal from "react-modal";
 import Patient from "../types/Patient";
@@ -22,6 +21,12 @@ const createMedicineData = () => {
       prescriber: `Dr. Prescriber ${index + 1}`,
       pharmacy: `Pharmacy ${index + 1}`,
       notes: index % 2 === 0 ? "Eat your pills :)" : undefined,
+      schedule: `Schedule ${(index % 3) + 1}`,
+      drp: `DRP ${
+        index % 2 === 0
+          ? "neffectiveness, adverse drug effects, overdosage, underdosage, inappropriate treatment"
+          : "overdosage, underdosage, inappropriate treatment"
+      }`,
     }));
 };
 
@@ -36,6 +41,10 @@ const PatientModal: React.FC<PatientModalProps> = ({
     setIsEditMode(!isEditMode);
   };
 
+  const handleGenerateDRP = () => {
+    console.log("Generating DRP...");
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -48,7 +57,7 @@ const PatientModal: React.FC<PatientModalProps> = ({
       <div className="relative p-4 w-full max-w-7xl max-h-[calc(100vh-5rem)] overflow-y-auto bg-white rounded-lg shadow-xl">
         <button
           onClick={handleClose}
-          className="absolute top-4 right-8 w-8 h-8 flex items-center justify-center text-xl rounded text-gray-600 hover:bg-gray-300"
+          className="absolute top-4 right-4 w-9 h-9 font-bold flex items-center justify-center text-2xl rounded text-gray-600 hover:bg-gray-300"
           aria-label="Close"
           style={{ transition: "color 0.3s ease" }}
         >
@@ -63,6 +72,13 @@ const PatientModal: React.FC<PatientModalProps> = ({
             style={{ transition: "background 0.3s ease, transform 0.3s ease" }}
           >
             {isEditMode ? "Save Changes" : "Edit"}
+          </button>
+          <button
+            onClick={handleGenerateDRP}
+            className="flex items-center justify-center text-lg rounded-full bg-green-500 text-white hover:bg-green-700 px-3 py-1 transform hover:scale-105"
+            style={{ transition: "background 0.3s ease, transform 0.3s ease" }}
+          >
+            Generate DRPs
           </button>
         </div>
 

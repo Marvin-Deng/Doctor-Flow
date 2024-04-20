@@ -66,24 +66,26 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       {
         accessorKey: "id",
         header: () => "ID",
-        cell: (info) => info.getValue(),
+        cell: (info) => (
+          <div className="text-sm">{(info.getValue() as string) || ""}</div>
+        ),
         sortingFn: defaultSortFn,
       },
       {
         accessorKey: "rx",
-        header: () => "Medication",
+        header: () => "Rx",
         cell: (info) =>
           isEditMode ? (
             <InputForm
               type="text"
-              placeholder="Enter Medication"
+              placeholder="Enter rx"
               value={(info.getValue() as string) || ""}
               onChange={(e) =>
                 handleValueChange(info.row.original.id, "rx", e.target.value)
               }
             />
           ) : (
-            info.getValue()
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
           ),
         sortingFn: defaultSortFn,
       },
@@ -101,7 +103,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
               }
             />
           ) : (
-            info.getValue()
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
           ),
         sortingFn: defaultSortFn,
       },
@@ -119,7 +121,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
               }
             />
           ) : (
-            info.getValue()
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
           ),
         sortingFn: defaultSortFn,
       },
@@ -141,7 +143,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
               }
             />
           ) : (
-            info.getValue()
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
           ),
         sortingFn: defaultSortFn,
       },
@@ -163,7 +165,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
               }
             />
           ) : (
-            info.getValue()
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
           ),
         sortingFn: defaultSortFn,
       },
@@ -185,7 +187,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
               }
             />
           ) : (
-            info.getValue()
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
           ),
         sortingFn: defaultSortFn,
       },
@@ -203,7 +205,69 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
               }
             />
           ) : (
-            info.getValue()
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
+          ),
+        sortingFn: defaultSortFn,
+      },
+      {
+        accessorKey: "pharmacy",
+        header: () => "Pharmacy",
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Pharmacy"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(
+                  info.row.original.id,
+                  "pharmacy",
+                  e.target.value
+                )
+              }
+            />
+          ) : (
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
+          ),
+        sortingFn: defaultSortFn,
+      },
+      {
+        accessorKey: "schedule",
+        header: () => <div className="w-40">Schedule</div>,
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter schedule"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(
+                  info.row.original.id,
+                  "schedule",
+                  e.target.value
+                )
+              }
+            />
+          ) : (
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
+          ),
+        sortingFn: defaultSortFn,
+      },
+      {
+        accessorKey: "drp",
+        header: () => <div className="w-52">DRP</div>,
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter a DRP"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(info.row.original.id, "drp", e.target.value)
+              }
+            />
+          ) : (
+            <div className="text-sm">{(info.getValue() as string) || ""}</div>
           ),
         sortingFn: defaultSortFn,
       },
