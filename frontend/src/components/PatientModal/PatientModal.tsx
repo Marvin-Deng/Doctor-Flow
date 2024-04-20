@@ -53,6 +53,10 @@ const PatientModal: React.FC<PatientModalProps> = ({
     console.log("Generating DRP...");
   };
 
+  const handleMedSummary = () => {
+    console.log("Summarizing...");
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -84,7 +88,11 @@ const PatientModal: React.FC<PatientModalProps> = ({
             value={"Generate DRPs"}
             color="blue"
           />
-
+          <Button
+            onClick={handleMedSummary}
+            value={"Summarize meds"}
+            color="blue"
+          />
           <Button
             onClick={handleOpenEmailModal}
             value={"Send Email"}
