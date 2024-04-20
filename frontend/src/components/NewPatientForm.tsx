@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import InputForm from './InputForm';
 
@@ -25,41 +25,43 @@ const NewPatientForm = () => {
     };
 
     return (
-        <div>
-            <InputForm
-                label="Name"
-                type="text"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            <InputForm
-                label="Email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            {medicines.map((medicine, index) => (
-                <div key={index}>
-                    <InputForm
-                        label="Medicine Name"
-                        type="text"
-                        placeholder="Enter medicine name"
-                        value={medicine.name}
-                        onChange={(e) => handleMedicineChange(index, e)}
-                    />
-                    <InputForm
-                        label="Dosage"
-                        type="text"
-                        placeholder="Enter dosage"
-                        value={medicine.dosage}
-                        onChange={(e) => handleMedicineChange(index, e)}
-                    />
-                    <button onClick={() => handleRemoveMedicine(index)}>Remove</button>
-                </div>
-            ))}
-            <button onClick={handleAddMedicine}>Add Medicine</button>
+        <div className="form-container">
+            <div className="form-content">
+                <InputForm
+                    label="Name"
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <InputForm
+                    label="Email"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                {medicines.map((medicine, index) => (
+                    <div key={index} className="medicine-form">
+                        <InputForm
+                            label="Medicine Name"
+                            type="text"
+                            placeholder="Enter medicine name"
+                            value={medicine.name}
+                            onChange={(e) => handleMedicineChange(index, e)}
+                        />
+                        <InputForm
+                            label="Dosage"
+                            type="text"
+                            placeholder="Enter dosage"
+                            value={medicine.dosage}
+                            onChange={(e) => handleMedicineChange(index, e)}
+                        />
+                        <button onClick={() => handleRemoveMedicine(index)}>Remove</button>
+                    </div>
+                ))}
+                <button onClick={handleAddMedicine}>Add Medicine</button>
+            </div>
         </div>
     );
 };

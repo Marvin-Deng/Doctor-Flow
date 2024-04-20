@@ -1,3 +1,4 @@
+/* Global styles and utility classes with Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,17 +18,142 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, rgba(76, 123, 177, 0.8), rgba(141, 212, 211, 0.8)), url('/assets/waves.svg') no-repeat top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; /* Resize background image to cover the desired area */
+  font-family: 'Arial', sans-serif; /* Sets a clean and professional font */
+  line-height: 1.6;
+  
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.curve-shape {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 1; /* Behind the content but above the background gradient */
+}
+
+.shape-fill {
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures content is spaced between */
+  padding: 20px 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  width: 80%;
+  margin: 30px auto;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: relative;
+  height: 80px;
+}
+
+.navbar a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+  gap: 20px;  /* Even spacing */
+}
+
+.nav-link, .sign-up-button {
+  font-size: 16px;
+  text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px; /* Slightly larger padding for a better touch area */
+    border-radius: 10px; /* Rounded corners for aesthetic */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.nav-link:hover, .sign-up-button{
+  background-color: rgba(0,123,255,0.1);
+}
+
+.nav-link {
+  
+  padding: 5px 15px;
+  margin-right: 10px; /* Space between links */
+}
+
+.sign-up-button {
+  
+  color: #fff; /* White text for visibility */
+  background-color: #3781e3; /* Bright blue background */
+  padding: 10px 20px;
+  border-radius: 20px; /* Rounded edges */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  font-weight: bold; /* Bold text */
+}
+
+.form-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns the form to the right */
+  margin-top: 100px;
+}
+
+.form-content {
+  width: 30%;  /* Smaller width for a compact form appearance */
+  padding: 20px;
+  margin-right: 135px; /* Ensures some spacing from the right edge */
+  background-color: rgba(255, 255, 255, 0.8); /* Light background for the form */
+  border-radius: 10px; /* Rounded corners for the form */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.medicine-form {
+  margin-top: 20px;
+  border: 2px solid #b7dfda; /* Adds a border around the form for definition */
+  padding: 20px; /* Padding inside the form */
+  border-radius: 10px; 
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50px;  /* Positioned away from the left edge of the navbar */
+}
+
+.app-icon {
+  display: block;
+  width: 60px;  /* Adjust this to change icon size without affecting navbar size */
+  height: 60px;
+}
+
+.brand-name {
+  margin-left: 20px;  /* Space between icon and text */
+  font-size: 24px;
+  color: #2a9d8f;
+  font-weight: bold;
 }
