@@ -22,9 +22,6 @@ async function connectToMongoDB() {
     } catch (error) {
         console.error("Error connecting to MongoDB Atlas:", error);
         throw error;
-    } finally {
-        // Ensures that the client will close when you finish/error
-        await client.close();
     }
 }
 
