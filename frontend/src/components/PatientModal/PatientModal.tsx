@@ -66,7 +66,7 @@ const PatientModal: React.FC<PatientModalProps> = ({
       overlayClassName="fixed inset-0 bg-gray-700 bg-opacity-60 flex items-center justify-center"
       ariaHideApp={false}
     >
-      <div className="relative p-4 w-full max-w-7xl max-h-[calc(100vh-5rem)] overflow-y-auto bg-white rounded-lg shadow-xl">
+      <div className="relative p-4 w-full max-w-8xl max-h-[calc(100vh-5rem)] overflow-y-auto bg-white rounded-lg shadow-xl">
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 w-9 h-9 font-bold flex items-center justify-center text-2xl rounded text-gray-600 hover:bg-gray-300"
