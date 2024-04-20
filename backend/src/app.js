@@ -22,6 +22,9 @@ app.use(auth(config));
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
+app.all('/login/callback', (req, res) => {
+  res.send('Callback route reached');
+});
 
 // Middleware for parsing request bodies (you can choose between body-parser or express.json())
 app.use(express.json());

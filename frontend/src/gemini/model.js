@@ -9,10 +9,6 @@ function generateSummaryPrompt(medication_name, condition) {
   return `Briefly describe the purpose of ${medication_name} and its use in treating ${condition}. Describe the side effects and what kinds of individuals are at risk taking this medication.`;
 }
 
-function generateDRPPrompt(medication_name, condition) {
-  return `Briefly describe the purpose of ${medication_name} and its use in treating ${condition}. Describe the side effects and what kinds of individuals are at risk taking this medication.`;
-}
-
 async function runGemini(prompt) {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
