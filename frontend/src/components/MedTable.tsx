@@ -13,21 +13,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-const createMedicineData = () => {
-  return Array(10)
-    .fill(null)
-    .map((_, index) => ({
-      id: index + 1,
-      rx: `Medicine Name ${index + 1}`,
-      dose: 10 * (index + 1),
-      unit: "mg",
-      condition: index % 2 === 0 ? "Condition A" : "Condition B",
-      prescriber: `Dr. Prescriber ${index + 1}`,
-      pharmacy: `Pharmacy ${index + 1}`,
-      notes: index % 2 === 0 ? "Note for even index" : undefined,
-    }));
-};
-
 const defaultSortFn: SortingFn<Medication> = (
   rowA: Row<Medication>,
   rowB: Row<Medication>,
@@ -53,7 +38,11 @@ const defaultSortFn: SortingFn<Medication> = (
   return String(rawValueA).localeCompare(String(rawValueB));
 };
 
-const MedTable = () => {
+interface MedTableProps {
+  medData: Medication[]; // Accepts medication data as a prop
+}
+
+const MedTable: React.FC<MedTableProps> = ({ medData }) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const columns = React.useMemo<ColumnDef<Medication>[]>(
@@ -110,8 +99,8 @@ const MedTable = () => {
     []
   );
 
-  const [data, setData] = React.useState(() => createMedicineData());
-  const refreshData = () => setData(() => createMedicineData());
+  const [data, setData] = React.useState(medData);
+  const refreshData = () => setData(() => medData);
 
   const table = useReactTable({
     columns,
