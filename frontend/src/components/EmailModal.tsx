@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
+
 interface EmailModalProps {
   isOpen: boolean;
   handleClose: () => void;
@@ -15,7 +16,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
   email,
 }) => {
   const handleSendEmail = () => {
-    console.log("sent");
+    console.log("Sending email...");
   };
 
   return (
@@ -42,14 +43,12 @@ const EmailModal: React.FC<EmailModalProps> = ({
             Are you sure you want to send this Personal Medication List to
             patient {name} at {email}?
           </h2>
-          <div className="mt-4 self-end">
-            <button
-              onClick={handleClose}
-              className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"
-            >
-              Send
-            </button>
-          </div>
+          <button
+            onClick={handleSendEmail} // Make sure this button actually calls handleSendEmail
+            className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"
+          >
+            Send
+          </button>
         </div>
       </div>
     </Modal>
