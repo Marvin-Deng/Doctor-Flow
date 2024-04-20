@@ -22,7 +22,7 @@ const LandingPage = () => {
         </div>
       </header>
       <button
-        className="fixed right-4 top-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        className="fixed right-8 bottom-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
         onClick={handleOpenModal}
       >
         Add New Patient

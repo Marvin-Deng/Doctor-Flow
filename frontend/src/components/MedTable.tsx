@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useCallback } from "react";
 import Medication from "../types/Med";
 import { Row } from "@tanstack/react-table";
+import InputForm from "./InputForm";
 
 import {
   ColumnDef,
@@ -13,37 +14,52 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-const defaultSortFn: SortingFn<Medication> = (
-  rowA: Row<Medication>,
-  rowB: Row<Medication>,
-  columnId: string
-) => {
-  const rawValueA = rowA.getValue(columnId);
-  const rawValueB = rowB.getValue(columnId);
-
-  if (rawValueA == null && rawValueB == null) {
-    return 0;
-  } else if (rawValueA == null) {
-    return 1;
-  } else if (rawValueB == null) {
-    return -1;
-  }
-
-  if (typeof rawValueA === "string" && typeof rawValueB === "string") {
-    return rawValueA.localeCompare(rawValueB);
-  } else if (typeof rawValueA === "number" && typeof rawValueB === "number") {
-    return rawValueA - rawValueB;
-  }
-
-  return String(rawValueA).localeCompare(String(rawValueB));
-};
-
 interface MedTableProps {
-  medData: Medication[]; // Accepts medication data as a prop
+  medData: Medication[];
+  isEditMode: boolean;
 }
 
-const MedTable: React.FC<MedTableProps> = ({ medData }) => {
+const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
+
+  const defaultSortFn: SortingFn<Medication> = (
+    rowA: Row<Medication>,
+    rowB: Row<Medication>,
+    columnId: string
+  ) => {
+    const rawValueA = rowA.getValue(columnId);
+    const rawValueB = rowB.getValue(columnId);
+
+    if (rawValueA == null && rawValueB == null) {
+      return 0;
+    } else if (rawValueA == null) {
+      return 1;
+    } else if (rawValueB == null) {
+      return -1;
+    }
+
+    if (typeof rawValueA === "string" && typeof rawValueB === "string") {
+      return rawValueA.localeCompare(rawValueB);
+    } else if (typeof rawValueA === "number" && typeof rawValueB === "number") {
+      return rawValueA - rawValueB;
+    }
+
+    return String(rawValueA).localeCompare(String(rawValueB));
+  };
+
+  const handleValueChange = useCallback(
+    (rowId: number, columnId: string, value: any) => {
+      setData((prevData) =>
+        prevData.map((item) => {
+          if (item.id === rowId) {
+            return { ...item, [columnId]: value };
+          }
+          return item;
+        })
+      );
+    },
+    []
+  );
 
   const columns = React.useMemo<ColumnDef<Medication>[]>(
     () => [
@@ -56,47 +72,143 @@ const MedTable: React.FC<MedTableProps> = ({ medData }) => {
       {
         accessorKey: "rx",
         header: () => "Medication",
-        cell: (info) => info.getValue(),
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Medication"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(info.row.original.id, "rx", e.target.value)
+              }
+            />
+          ) : (
+            info.getValue()
+          ),
         sortingFn: defaultSortFn,
       },
       {
         accessorKey: "dose",
         header: () => "Dose",
-        cell: (info) => info.getValue(),
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Dose"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(info.row.original.id, "dose", e.target.value)
+              }
+            />
+          ) : (
+            info.getValue()
+          ),
         sortingFn: defaultSortFn,
       },
       {
         accessorKey: "unit",
         header: () => "Unit",
-        cell: (info) => info.getValue(),
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Unit"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(info.row.original.id, "unit", e.target.value)
+              }
+            />
+          ) : (
+            info.getValue()
+          ),
         sortingFn: defaultSortFn,
       },
       {
         accessorKey: "condition",
         header: () => "Condition",
-        cell: (info) => info.getValue(),
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Condition"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(
+                  info.row.original.id,
+                  "condition",
+                  e.target.value
+                )
+              }
+            />
+          ) : (
+            info.getValue()
+          ),
         sortingFn: defaultSortFn,
       },
       {
         accessorKey: "prescriber",
         header: () => "Prescriber",
-        cell: (info) => info.getValue(),
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Prescriber"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(
+                  info.row.original.id,
+                  "prescriber",
+                  e.target.value
+                )
+              }
+            />
+          ) : (
+            info.getValue()
+          ),
         sortingFn: defaultSortFn,
       },
       {
         accessorKey: "pharmacy",
         header: () => "Pharmacy",
-        cell: (info) => info.getValue(),
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Pharmacy"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(
+                  info.row.original.id,
+                  "pharmacy",
+                  e.target.value
+                )
+              }
+            />
+          ) : (
+            info.getValue()
+          ),
         sortingFn: defaultSortFn,
       },
       {
         accessorKey: "notes",
         header: () => "Notes",
-        cell: (info) => info.getValue(),
+        cell: (info) =>
+          isEditMode ? (
+            <InputForm
+              type="text"
+              placeholder="Enter Notes"
+              value={(info.getValue() as string) || ""}
+              onChange={(e) =>
+                handleValueChange(info.row.original.id, "notes", e.target.value)
+              }
+            />
+          ) : (
+            info.getValue()
+          ),
         sortingFn: defaultSortFn,
       },
     ],
-    []
+    [isEditMode, handleValueChange]
   );
 
   const [data, setData] = React.useState(medData);
