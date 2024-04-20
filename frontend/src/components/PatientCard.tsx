@@ -7,7 +7,7 @@ interface PatientCardProps {
 
 const PatientCard: React.FC<PatientCardProps> = ({ patient }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 flex items-center space-x-4">
+    <div className="bg-white shadow-md rounded-xl p-4 flex items-center space-x-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105">
       <div className="flex-grow">
         <h2 className="text-lg font-semibold">{patient.name}</h2>
         <p>ID: {patient.id}</p>
