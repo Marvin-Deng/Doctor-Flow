@@ -21,7 +21,7 @@ const InputForm: React.FC<InputFormProps> = ({
       {label}
     </label>
     <input
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      className="text-sm shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       id={label}
       type={type}
       placeholder={placeholder}

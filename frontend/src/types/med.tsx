@@ -7,4 +7,6 @@ export default interface Medicine {
   prescriber: string;
   pharmacy: string;
   notes?: string;
+  schedule?: string;
+  drp?: string;
 }
