@@ -44,7 +44,7 @@ const EmailModal: React.FC<EmailModalProps> = ({
             patient {name} at {email}?
           </h2>
           <button
-            onClick={handleSendEmail} // Make sure this button actually calls handleSendEmail
+            onClick={handleSendEmail}
             className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"
           >
             Send
