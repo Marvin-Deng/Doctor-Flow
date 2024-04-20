@@ -29,6 +29,7 @@ export default function Home() {
           <button className="sign-up-button">Sign Up!</button>
         </div>
       </div>
+      <LandingPage />
       <div className="curve-shape">
         <svg
           data-name="Layer 1"
@@ -42,7 +43,7 @@ export default function Home() {
           ></path>
         </svg>
       </div>
-      <LandingPage />
+      
     </>
   );
 }
