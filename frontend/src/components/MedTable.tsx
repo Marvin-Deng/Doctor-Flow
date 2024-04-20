@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import Medication from "../types/Med";
+import { Row } from "@tanstack/react-table";
 
 import {
   ColumnDef,
@@ -11,59 +13,98 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-// Mock data
 const createMedicineData = () => {
   return Array(10)
     .fill(null)
     .map((_, index) => ({
-      medicineName: `Medicine Name ${index + 1}`,
-      dosage: `${10 * (index + 1)}mg`,
+      id: index + 1,
+      rx: `Medicine Name ${index + 1}`,
+      dose: 10 * (index + 1),
+      unit: "mg",
+      condition: index % 2 === 0 ? "Condition A" : "Condition B",
       prescriber: `Dr. Prescriber ${index + 1}`,
       pharmacy: `Pharmacy ${index + 1}`,
+      notes: index % 2 === 0 ? "Note for even index" : undefined,
     }));
 };
 
-type Medicine = {
-  medicineName: string;
-  dosage: string;
-  prescriber: string;
-  pharmacy: string;
-};
+const defaultSortFn: SortingFn<Medication> = (
+  rowA: Row<Medication>,
+  rowB: Row<Medication>,
+  columnId: string
+) => {
+  const rawValueA = rowA.getValue(columnId);
+  const rawValueB = rowB.getValue(columnId);
 
-const sortStatusFn: SortingFn<Medicine> = (rowA, rowB, _columnId) => {
-  const statusA = rowA.original.medicineName;
-  const statusB = rowB.original.medicineName;
-  const statusOrder = ["single", "complicated", "relationship"];
-  return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB);
+  if (rawValueA == null && rawValueB == null) {
+    return 0;
+  } else if (rawValueA == null) {
+    return 1;
+  } else if (rawValueB == null) {
+    return -1;
+  }
+
+  if (typeof rawValueA === "string" && typeof rawValueB === "string") {
+    return rawValueA.localeCompare(rawValueB);
+  } else if (typeof rawValueA === "number" && typeof rawValueB === "number") {
+    return rawValueA - rawValueB;
+  }
+
+  return String(rawValueA).localeCompare(String(rawValueB));
 };
 
 const MedTable = () => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
-  const columns = React.useMemo<ColumnDef<Medicine>[]>(
+  const columns = React.useMemo<ColumnDef<Medication>[]>(
     () => [
       {
-        accessorKey: "medicineName",
-        header: () => "Medicine Name",
+        accessorKey: "id",
+        header: () => "ID",
         cell: (info) => info.getValue(),
+        sortingFn: defaultSortFn,
       },
       {
-        accessorKey: "dosage",
-        header: () => "Dosage",
+        accessorKey: "rx",
+        header: () => "Medication",
         cell: (info) => info.getValue(),
-        sortDescFirst: true,
+        sortingFn: defaultSortFn,
+      },
+      {
+        accessorKey: "dose",
+        header: () => "Dose",
+        cell: (info) => info.getValue(),
+        sortingFn: defaultSortFn,
+      },
+      {
+        accessorKey: "unit",
+        header: () => "Unit",
+        cell: (info) => info.getValue(),
+        sortingFn: defaultSortFn,
+      },
+      {
+        accessorKey: "condition",
+        header: () => "Condition",
+        cell: (info) => info.getValue(),
+        sortingFn: defaultSortFn,
       },
       {
         accessorKey: "prescriber",
         header: () => "Prescriber",
         cell: (info) => info.getValue(),
-        sortUndefined: "last",
+        sortingFn: defaultSortFn,
       },
       {
         accessorKey: "pharmacy",
         header: () => "Pharmacy",
         cell: (info) => info.getValue(),
-        sortUndefined: "last",
+        sortingFn: defaultSortFn,
+      },
+      {
+        accessorKey: "notes",
+        header: () => "Notes",
+        cell: (info) => info.getValue(),
+        sortingFn: defaultSortFn,
       },
     ],
     []
@@ -85,8 +126,7 @@ const MedTable = () => {
 
   return (
     <div className="p-2">
-      <div className="h-2" />{" "}
-      {/* This div seems to be used for spacing, ensure it's needed */}
+      <div className="h-2" />
       <table className="w-full border-collapse border border-gray-300">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
