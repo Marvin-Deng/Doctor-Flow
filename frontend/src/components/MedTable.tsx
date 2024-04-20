@@ -65,7 +65,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
     () => [
       {
         accessorKey: "id",
-        header: () => "ID",
+        header: () => <div className="text-gray-500 uppercase text-xs">ID</div>,
         cell: (info) => (
           <div className="text-sm">{(info.getValue() as string) || ""}</div>
         ),
@@ -73,7 +73,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "rx",
-        header: () => "Rx",
+        header: () => <div className="text-gray-500  uppercase text-xs">Rx</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -91,7 +91,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "dose",
-        header: () => "Dose",
+        header: () => <div className="text-gray-500 uppercase text-xs">Dose</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -109,7 +109,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "unit",
-        header: () => "Unit",
+        header: () => <div className="text-gray-500 uppercase text-xs">Unit</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -127,7 +127,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "condition",
-        header: () => "Condition",
+        header: () => <div className="text-gray-500 uppercase text-xs">Condition</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -149,7 +149,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "prescriber",
-        header: () => "Prescriber",
+        header: () => <div className="text-gray-500 uppercase text-xs">Prescriber</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -171,7 +171,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "pharmacy",
-        header: () => "Pharmacy",
+        header: () => <div className="text-gray-500 uppercase text-xs">Pharmacy</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -193,7 +193,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "notes",
-        header: () => "Notes",
+        header: () => <div className="text-gray-500 uppercase text-xs">Notes</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -210,30 +210,8 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
         sortingFn: defaultSortFn,
       },
       {
-        accessorKey: "pharmacy",
-        header: () => "Pharmacy",
-        cell: (info) =>
-          isEditMode ? (
-            <InputForm
-              type="text"
-              placeholder="Enter Pharmacy"
-              value={(info.getValue() as string) || ""}
-              onChange={(e) =>
-                handleValueChange(
-                  info.row.original.id,
-                  "pharmacy",
-                  e.target.value
-                )
-              }
-            />
-          ) : (
-            <div className="text-sm">{(info.getValue() as string) || ""}</div>
-          ),
-        sortingFn: defaultSortFn,
-      },
-      {
         accessorKey: "schedule",
-        header: () => <div className="w-40">Schedule</div>,
+        header: () => <div className="text-gray-500 uppercase text-xs">Schedule</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -255,7 +233,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       },
       {
         accessorKey: "drp",
-        header: () => <div className="w-52">DRP</div>,
+        header: () => <div className="text-gray-500 uppercase text-xs w-52">DRP</div>,
         cell: (info) =>
           isEditMode ? (
             <InputForm
@@ -293,7 +271,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
     <div className="p-2">
       <div className="h-2" />
       <table className="w-full border-collapse border border-gray-300">
-        <thead>
+        <thead className="bg-teal-100">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {

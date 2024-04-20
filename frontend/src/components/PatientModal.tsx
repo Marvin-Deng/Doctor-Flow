@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import Patient from "../types/Patient";
 import MedTable from "./MedTable";
 import EmailModal from "./EmailModal";
+import PatientTable from "./PatientDetails/PatientTable";
 
 interface PatientModalProps {
   isOpen: boolean;
@@ -77,7 +78,7 @@ const PatientModal: React.FC<PatientModalProps> = ({
             className="flex items-center justify-center text-lg rounded-full bg-blue-500 text-white hover:bg-blue-700 px-3 py-1 transform hover:scale-105"
             style={{ transition: "background 0.3s ease, transform 0.3s ease" }}
           >
-            {isEditMode ? "Save Changes" : "Edit"}
+            {isEditMode ? "Save Changes" : "Edit Medications"}
           </button>
           <button
             onClick={handleGenerateDRP}
@@ -95,10 +96,7 @@ const PatientModal: React.FC<PatientModalProps> = ({
           </button>
         </div>
 
-        <p>ID: {patient.id}</p>
-        <p>Sex: {patient.sex}</p>
-        <p>Age: {patient.age}</p>
-        <p>DOB: {new Date(patient.dob).toLocaleDateString()}</p>
+        <PatientTable patient={patient} />
         <MedTable medData={createMedicineData()} isEditMode={isEditMode} />
         <EmailModal
           isOpen={isEmailOpen}
