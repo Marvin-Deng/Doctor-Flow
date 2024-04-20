@@ -16,11 +16,6 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="mt-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Doctor-Flow</h1>
-        </div>
-      </header>
       <div className="flex-grow flex flex-col items-center">
         <button
           className="fixed right-8 bottom-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"

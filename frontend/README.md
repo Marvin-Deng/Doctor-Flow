@@ -8,7 +8,12 @@ cd frontend
 npm install
 ```
 
-2. Running
+2. Create a `.env` in `frontend` and add your Gemini key to it
+```shell
+GOOGLE_API_KEY=
+```
+
+3. Running
 ```shell
 npm run dev
 ```
