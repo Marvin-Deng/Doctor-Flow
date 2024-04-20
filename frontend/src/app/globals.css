@@ -1,3 +1,148 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgba(76, 123, 177, 0.8),
+      rgba(141, 212, 211, 0.8)
+    ),
+    url("/assets/waves.svg") no-repeat top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+}
+
+.curve-shape {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 1;
+}
+
+.shape-fill {
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  width: 80%;
+  margin: 30px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  height: 80px;
+}
+
+.navbar a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link,
+.sign-up-button {
+  font-size: 16px;
+  text-decoration: none;
+  color: #333;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.sign-up-button:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.nav-link {
+  padding: 5px 15px;
+  margin-right: 10px;
+}
+
+.sign-up-button {
+  color: #fff;
+  background-color: #3781e3;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+}
+
+.form-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 100px;
+}
+
+.form-content {
+  width: 30%;
+  padding: 20px;
+  margin-right: 135px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.medicine-form {
+  margin-top: 20px;
+  border: 2px solid #b7dfda;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50px;
+}
+
+.app-icon {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
+
+.brand-name {
+  margin-left: 20px;
+  font-size: 24px;
+  color: #2a9d8f;
+  font-weight: bold;
+}

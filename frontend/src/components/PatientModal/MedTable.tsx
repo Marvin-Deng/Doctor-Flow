@@ -74,7 +74,7 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
       {
         accessorKey: "rx",
         header: () => (
-          <div className="text-gray-500  uppercase text-xs">Rx</div>
+          <div className="text-gray-500 uppercase text-xs w-20">Rx</div>
         ),
         cell: (info) =>
           isEditMode ? (
