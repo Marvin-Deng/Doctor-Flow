@@ -38,6 +38,13 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
     handleClose();
   };
 
+  const formatAllergies = (allergies: any): string => {
+    if (Array.isArray(allergies)) {
+      return allergies.join(", ");
+    }
+    return allergies || "";
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -105,7 +112,7 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
             type="text"
             name="allergies"
             placeholder="Enter allergies"
-            value={patient.insurance}
+            value={formatAllergies(patient?.allergies) || ""}
             onChange={handleChange}
           />
           <InputForm
