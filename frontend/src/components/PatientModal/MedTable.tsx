@@ -1,8 +1,8 @@
 "use client";
 import React, { useCallback } from "react";
-import Medication from "../types/Med";
+import Medication from "../../types/Med";
 import { Row } from "@tanstack/react-table";
-import InputForm from "./InputForm";
+import InputForm from "../units/InputForm";
 
 import {
   ColumnDef,

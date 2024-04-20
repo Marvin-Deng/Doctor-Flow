@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
-import NewPatientForm from "../../components/NewPatientForm";
-import PatientList from "../../components/PatientList";
+import NewPatientForm from "../../components/NewPatient/NewPatientForm";
+import PatientList from "../../components/LandingPage/PatientList";
 
 const LandingPage = () => {
   const [isOpen, setIsOpen] = useState(false);

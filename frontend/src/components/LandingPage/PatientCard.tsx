@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import PatientModal from "./PatientModal";
-import Patient from "../types/Patient";
+import PatientModal from "../PatientModal/PatientModal";
+import Patient from "../../types/Patient";
 
 interface PatientCardProps {
   patient: Patient;
