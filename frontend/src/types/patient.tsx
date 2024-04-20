@@ -1,14 +1,13 @@
-import Medication from "./med"
+import Medication from "./Med";
 
 export default interface Patient {
-    id: string;
-    name: string;
-    sex: string;
-    age: number;
-    dob: Date;
-    email: string;
-    insurance: string;
-    allergies?: string[];
-    medications: Medication[];
-  }
-  
+  id: number;
+  name: string;
+  sex: string;
+  age: number;
+  dob: Date;
+  email: string;
+  insurance: string;
+  allergies?: string[];
+  medications: Medication[];
+}

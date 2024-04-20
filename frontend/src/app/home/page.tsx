@@ -1,6 +1,7 @@
 import React from "react";
 import MedTable from "../../components/MedTable";
 import NewPatientForm from "../../components/NewPatientForm";
+import PatientList from "../../components/PatientList"
 
 const LandingPage = () => {
   return (
@@ -10,6 +11,7 @@ const LandingPage = () => {
           <h1 className="text-3xl font-bold text-gray-900">Doctor-Flow</h1>
         </div>
       </header>
+      <PatientList />
       <MedTable />
       <NewPatientForm />
     </div>
