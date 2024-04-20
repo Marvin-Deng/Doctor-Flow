@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+
 import Modal from "react-modal";
 import Patient from "../types/Patient";
 import MedTable from "./MedTable";
+import EmailModal from "./EmailModal";
 
 interface PatientModalProps {
   isOpen: boolean;
@@ -36,6 +38,10 @@ const PatientModal: React.FC<PatientModalProps> = ({
   patient,
 }) => {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isEmailOpen, setIsEmailOpen] = useState(false);
+
+  const handleOpenEmailModal = () => setIsEmailOpen(true);
+  const handleCloseEmailModal = () => setIsEmailOpen(false);
 
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
@@ -80,6 +86,13 @@ const PatientModal: React.FC<PatientModalProps> = ({
           >
             Generate DRPs
           </button>
+          <button
+            onClick={handleOpenEmailModal}
+            className="flex items-center justify-center text-lg rounded-full bg-green-500 text-white hover:bg-green-700 px-3 py-1 transform hover:scale-105"
+            style={{ transition: "background 0.3s ease, transform 0.3s ease" }}
+          >
+            Email Report
+          </button>
         </div>
 
         <p>ID: {patient.id}</p>
@@ -87,6 +100,12 @@ const PatientModal: React.FC<PatientModalProps> = ({
         <p>Age: {patient.age}</p>
         <p>DOB: {new Date(patient.dob).toLocaleDateString()}</p>
         <MedTable medData={createMedicineData()} isEditMode={isEditMode} />
+        <EmailModal
+          isOpen={isEmailOpen}
+          handleClose={handleCloseEmailModal}
+          name={patient.name}
+          email={patient.email}
+        />
       </div>
     </Modal>
   );
