@@ -15,8 +15,8 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="mt-10 w-full bg-white shadow">
+    <div className="min-h-screen flex flex-col">
+      <header className="mt-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">Doctor-Flow</h1>
         </div>

@@ -5,6 +5,7 @@ import Patient from "../../types/Patient";
 import MedTable from "./MedTable";
 import EmailModal from "../Email/EmailModal";
 import PatientTable from "./PatientTable";
+import Button from "../units/Button";
 
 interface PatientModalProps {
   isOpen: boolean;
@@ -73,27 +74,22 @@ const PatientModal: React.FC<PatientModalProps> = ({
 
         <div className="flex items-center justify-start space-x-4">
           <h2 className="text-xl font-bold mb-2">{patient.name}</h2>
-          <button
+          <Button
             onClick={toggleEditMode}
-            className="flex items-center justify-center text-lg rounded-full bg-blue-500 text-white hover:bg-blue-700 px-3 py-1 transform hover:scale-105"
-            style={{ transition: "background 0.3s ease, transform 0.3s ease" }}
-          >
-            {isEditMode ? "Save Changes" : "Edit Medications"}
-          </button>
-          <button
+            value={isEditMode ? "Save Changes" : "Edit Medications"}
+            color="blue"
+          />
+          <Button
             onClick={handleGenerateDRP}
-            className="flex items-center justify-center text-lg rounded-full bg-green-500 text-white hover:bg-green-700 px-3 py-1 transform hover:scale-105"
-            style={{ transition: "background 0.3s ease, transform 0.3s ease" }}
-          >
-            Generate DRPs
-          </button>
-          <button
+            value={"Generate DRPs"}
+            color="blue"
+          />
+
+          <Button
             onClick={handleOpenEmailModal}
-            className="flex items-center justify-center text-lg rounded-full bg-green-500 text-white hover:bg-green-700 px-3 py-1 transform hover:scale-105"
-            style={{ transition: "background 0.3s ease, transform 0.3s ease" }}
-          >
-            Email Report
-          </button>
+            value={"Send Email"}
+            color="blue"
+          />
         </div>
 
         <PatientTable patient={patient} />

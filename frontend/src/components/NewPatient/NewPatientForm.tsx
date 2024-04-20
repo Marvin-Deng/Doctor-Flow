@@ -53,7 +53,7 @@ const NewPatientModal: React.FC<NewPatientModalProps> = ({
         </h2>
         <button
           onClick={handleClose}
-          className="absolute top-4 right-8 w-8 h-8 flex items-center justify-center text-2xl rounded text-gray-600 hover:bg-gray-300"
+          className="absolute top-4 right-8 w-8 h-8 flex items-center justify-center text-2xl rounded text-gray-600 hover:bg-gray-300 hover:cursor"
           aria-label="Close"
           style={{ transition: "color 0.3s ease" }}
         >
