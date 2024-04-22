@@ -312,7 +312,9 @@ const MedTable: React.FC<MedTableProps> = ({ medData, isEditMode }) => {
   return (
     <div className="p-2">
       <div className="h-2" />
+      <h2 className="text-xl font-bold mb-2">Medications List</h2>
       <table className="w-full border-collapse border border-gray-300">
+      
         <thead className="bg-teal-100 ">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
